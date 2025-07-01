@@ -1,9 +1,11 @@
-const {getEvents,postEvents,updateEvent,deleteEvent} = require("../controller/eventController")
+const {getEvents,postEvents,updateEvent,deleteEvent, getEventById} = require("../controller/eventController")
 const auth = require("../middleware/auth")
 const route = require("express").Router()
 
 
 route.get("/",getEvents)
+
+route.get("/:id",getEventById)
 
 route.post("/",auth,postEvents)
 

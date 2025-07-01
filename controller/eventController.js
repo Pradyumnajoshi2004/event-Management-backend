@@ -9,6 +9,15 @@ exports.getEvents = async (req,res) => {
     }
 }
 
+exports.getEventById = async (req,res) => {
+    try {
+        const data  = await Event.findById(req.params.id)
+        return res.json({errors:false,data:data})
+    } catch (error) {
+        return res.status(500).json({errors:true,message:error.message})
+    }
+}
+
 exports.postEvents = async (req, res) => {
     try {
         const { eventName, date, eventDescription, eventVenue } = req.body;
