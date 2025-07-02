@@ -2,7 +2,7 @@ const Event = require("../model/eventModel")
 
 exports.getEvents = async (req,res) => {
     try {
-        const data  = await Event.find()
+        const data  = await Event.find().populate('userId')
         return res.json({errors:false,data:data})
     } catch (error) {
         return res.status(500).json({errors:true,message:error.message})
@@ -28,7 +28,7 @@ exports.postEvents = async (req, res) => {
         }
 
         const data = await Event.create(req.body);
-        return res.json({ errors: false, data: data });
+        return res.status(500).json({ errors: false, data: data });
     } catch (error) {
         return res.status(500).json({ errors: true, message: error.message });
     }
